@@ -9,7 +9,7 @@ class CustomRouter<T> {
   }
 
   public addRoute(controller: Controller<T>, route: string = controller.route) {
-    // this.router.get(route, controller.read);
+    this.router.get(route, controller.read);
     // this.router.get(`${route}/:id`, controller.readOne);
     this.router.post(route, controller.create);
     // this.router.put(`${route}/:id`, controller.update);

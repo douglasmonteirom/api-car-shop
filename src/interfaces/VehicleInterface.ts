@@ -14,6 +14,7 @@ export const vehicleZodSchema = z.object({
     required_error: 'Color is required',
     invalid_type_error: 'Color must be a string',
   }).min(3, { message: 'Color must be 3 or more characters long' }),
+  status: z.boolean().optional(),
   buyValue: z.number({
     required_error: 'Buy Value is required',
     invalid_type_error: 'Buy Value must be a number',
