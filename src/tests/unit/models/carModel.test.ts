@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Model } from 'mongoose';
 import Sinon from 'sinon';
-import CarModel, { ICar } from '../../../model/Car'
+import CarModel, { ICar } from '../../../models/Car'
 
 const functions = {
   create: Sinon.stub().resolves(),
@@ -13,7 +13,7 @@ const functions = {
 describe('Model', () => {
   const modelStub = () => functions;
 
-  const model = new CarModel( modelStub() as unknown as Model<ICar>,);
+  const model = new CarModel( modelStub() as unknown as Model<ICar, {}, {}, {}>,);
 
   it('exist', () => {
     expect(model).to.be.an('object');

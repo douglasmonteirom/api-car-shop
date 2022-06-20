@@ -1,7 +1,7 @@
 import Service, { ServiceError } from '.';
 import { Car, carZodSchema } from '../interfaces/CarInterface';
 import { idZodSchema, vehicleZodSchema } from '../interfaces/VehicleInterface';
-import CarModel from '../model/Car';
+import CarModel from '../models/Car';
 
 class CarService extends Service<Car> {
   constructor(model = new CarModel()) {
