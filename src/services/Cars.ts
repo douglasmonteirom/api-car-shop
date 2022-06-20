@@ -25,6 +25,16 @@ class CarService extends Service<Car> {
     const car = await this.model.readOne(id);
     return car;
   };
+
+  update = async (id: string, obj: Car): Promise<Car | null | ServiceError> => {
+    const validId = idZodSchema.safeParse(id);
+    if (!validId.success) {
+      return ({ error: 'Id must have 24 hexadecimal characters' });
+    }
+    if (Object.keys(obj).length === 0) return { error: 'No body' };
+    const car = this.model.update(id, obj);
+    return car;
+  };
 }
 
 export default CarService;
