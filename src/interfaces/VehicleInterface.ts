@@ -21,6 +21,9 @@ export const vehicleZodSchema = z.object({
   }).int({ message: 'Buy Value must be a integer' }),
 });
 
+export const idZodSchema = z.string()
+  .min(24);
+
 // export type Vehicle = z.infer<typeof vehicleZodSchema>;
 
 export interface Vehicle {
