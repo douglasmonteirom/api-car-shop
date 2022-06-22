@@ -21,16 +21,17 @@ class MotoService extends Service<Motorcycle> {
     return moto;
   };
 
-  // readOne = async (id: string): Promise<Car | ServiceError | null> => {
-  //   const car = await this.model.readOne(id);
-  //   return car;
-  // };
+  readOne = async (id: string): Promise<Motorcycle | ServiceError | null> => {
+    const moto = await this.model.readOne(id);
+    return moto;
+  };
 
-  // update = async (id: string, obj: Car): Promise<Car | null | ServiceError> => {
-  //   if (Object.keys(obj).length === 0) return { error: 'No body' };
-  //   const car = await this.model.update(id, obj);
-  //   return car;
-  // };
+  update = async (id: string, obj: Motorcycle): Promise<
+  Motorcycle | null | ServiceError> => {
+    if (Object.keys(obj).length === 0) return { error: 'No body' };
+    const moto = await this.model.update(id, obj);
+    return moto;
+  };
 }
 
 export default MotoService;
