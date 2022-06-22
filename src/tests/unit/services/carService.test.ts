@@ -8,6 +8,7 @@ const functions = {
   read: Sinon.stub().resolves(),
   readOne: Sinon.stub().resolves(),
   update: Sinon.stub().resolves(),
+  delete: Sinon.stub().resolves(),
 };
 
 describe('Service', () => {
@@ -17,6 +18,13 @@ describe('Service', () => {
 
   it('exist', () => {
     expect(service).to.be.an('object');
+  });
+  it('CRUD functios exist', () => {
+    expect(service.create).to.be.an('function');
+    expect(service.read).to.be.an('function');
+    expect(service.readOne).to.be.an('function');
+    expect(service.update).to.be.an('function');
+    expect(service.delete).to.be.an('function');
   });
   describe('Service workin', () => {
     const id = '62b0adadadc2fa25883f9eaf';
@@ -37,6 +45,15 @@ describe('Service', () => {
 
       expect(result).to.have.property('error');
     });
+    it('error schemaCar create', async () => {
+      const result = await service.create({
+      model: 'Ferrari',
+      year: 1963,
+      color: 'red',
+      buyValue: 3500000,} as ICar);
+
+      expect(result).to.have.property('error');
+    });
     it('read', async () => {
       await service.read();
       expect(functions.read.called).to.be.true;
@@ -49,15 +66,14 @@ describe('Service', () => {
       await service.update(id, car);
       expect(functions.update.called).to.be.true;
     });
-    it('error id update', async () => {
-      const result = await service.update('', car);
-
-      expect(result).to.have.property('error');
-    });
     it('error body update', async () => {
       const result = await service.update(id, {} as ICar);
 
       expect(result).to.have.property('error');
+    });
+    it('delete', async () => {
+      await service.delete(id);
+      expect(functions.update.called).to.be.true;
     });
   });
 });
